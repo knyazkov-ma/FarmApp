@@ -56,8 +56,9 @@ namespace FarmApp.BLL.Services
 
             try
             {
-
-                var farm = mapper.Map<FarmCropDto, Farm>(farmCrop);
+				//TODO: создание из одной структуры несколько реализовать явно, за счет new Some{}
+				//TODO: здесь и далее - вход ф-й переименоать из ...Dto в, наприемр, ...Params
+				var farm = mapper.Map<FarmCropDto, Farm>(farmCrop);
 
                 var crop = mapper.Map<FarmCropDto, Crop>(farmCrop);
 

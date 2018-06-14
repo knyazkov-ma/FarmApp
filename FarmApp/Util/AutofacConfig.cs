@@ -8,6 +8,7 @@ namespace FarmApp.Util
 {
 	public class AutofacConfig
 	{
+		//TODO: здесь и далее - реализовать как потокобезопасный синглетон
 		public static void ConfigureContainer()
 		{
 			// получаем экземпляр контейнера

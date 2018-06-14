@@ -10,6 +10,7 @@ namespace FarmApp.Util
 {
     public class AutoMapperConfig
     {
+		//TODO: здесь и далее - реализовать как потокобезопасный синглетон
         public static Mapper GetMapper()
         {
             var config = new MapperConfiguration(cfg =>
