@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace FarmApp.DAL
 {
-    /// <summary>
-    /// Регион
-    /// </summary>
-    public class Region
+	//TODO: Entity унаследовать от абстрактного BaseEntity, у которого есть ствойство Id
+	//TODO: - лучше Id типа long
+	//TODO: - еще лучше Entity<TKey> (учитывая второе замечание FarmContext)
+
+	/// <summary>
+	/// Регион
+	/// </summary>
+	public class Region
     {
         /// <summary>
         /// Идентификатор

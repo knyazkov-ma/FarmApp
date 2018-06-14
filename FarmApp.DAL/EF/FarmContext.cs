@@ -24,12 +24,14 @@ namespace FarmApp.DAL.EF
 
 		public DbSet<Region> Regions { get; set; }
 
-
+		//TODO: не подходящее место (магия языка, может выйти боком). 
+		//      Все миграции лучше запускать явно, вызовом метода, при старте приложения
 		static FarmContext()
 		{
 			Database.SetInitializer(new MigrateDatabaseToLatestVersion<FarmContext, Configuration>());
 		}
 
+		//TODO: если требуется 2 конструктора, то явно описать use-case
 		public FarmContext()
 			: base("FarmContext")
 		{

@@ -23,7 +23,9 @@ namespace FarmApp.BLL.Tests
             farmService = new FarmService(iow.Object, AutoMapperConfig.GetMapper());
         }
 
-        [Test]
+
+		//TODO: здесь и далее - см. FarmService.AddFarmCrop
+		[Test]
         public void AddFarmCrop_InvalidAgricultureId_ThrowValidationException()
         {            
             FarmCropDto enemy = new FarmCropDto() { AgricultureId = -1, FarmerId = 1, RegionId = 1, Area = 1, Gather = 1, Name = "abc" };
@@ -124,7 +126,8 @@ namespace FarmApp.BLL.Tests
                 Assert.IsTrue(ex.Property == "Area");
             }
         }
-
+		
+		//TODO: тестирует маппинг, что не должен, убрать/изменить
         [Test]
         public void AddFarmCrop_ValidateModelMappingWhenSave_IsValid_()
         {
