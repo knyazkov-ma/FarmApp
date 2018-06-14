@@ -19,7 +19,10 @@ namespace FarmApp.BLL
                 cfg.CreateMap<FarmCropDto, Crop>();
                 cfg.CreateMap<Agriculture, AgricultureDto>();
                 cfg.CreateMap<Farmer, FarmerDto>();
-                cfg.CreateMap<Region, RegionDto>();
+
+				//TODO: не использовать маппинг по соглашению, явно маппить,
+				//      в частности, здесь из-за этого не проходит тест
+				cfg.CreateMap<Region, RegionDto>();
             });
             return new Mapper(config);
         }

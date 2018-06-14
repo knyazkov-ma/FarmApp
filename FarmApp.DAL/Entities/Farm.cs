@@ -36,10 +36,13 @@ namespace FarmApp.DAL
         /// </summary>
         public int RegionId { get; set; }
 
-        /// <summary>
-        /// Фермер-владелец
-        /// </summary>
-        public virtual Farmer Owner { get; set; }
+
+		//TODO: "Farmer Owner" запутывает, нет смысла использовать для одной роли имена, отличающиеся от типа,
+		//      здесь и далее - переименовать Farmer Farmer
+		/// <summary>
+		/// Фермер-владелец
+		/// </summary>
+		public virtual Farmer Owner { get; set; }
 
         /// <summary>
         /// Регион-расположение

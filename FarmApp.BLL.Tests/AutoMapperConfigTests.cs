@@ -40,6 +40,7 @@ namespace FarmApp.BLL.Tests
             Assert.IsTrue(to.AgricultureId == 1 && to.Gather == 4);
         }
 
+		//TODO: красный
         [Test]
         public void Mapping_RegionToRegionDto_IsValid()
         {

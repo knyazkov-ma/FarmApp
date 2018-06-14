@@ -38,6 +38,10 @@ namespace FarmApp.Controllers
 		/// <returns></returns>
 		public ActionResult List()
         {
+			//TODO: здесь и далее - по-факту проекция не нужна, достаточно DTO
+			//TODO: ToList() лишний - farmService возвращает материализованную коллекцию
+			//TODO: объектное представление записи журнала и записи карточки, а также, связанные с этим запросы к БД,
+			//      почти всегда различаются, поэтому сразу это предусмотреть на всех слоях
 			var farms = farmService.GetFarms().AsQueryable().ProjectTo<FarmViewModel>(mapper.ConfigurationProvider).ToList();
 			
 			return View(farms);
@@ -49,7 +53,14 @@ namespace FarmApp.Controllers
         /// <returns></returns>        
         public ActionResult Create()
         {
-            MemoryCache cache = MemoryCache.Default;
+			//TODO: copy-past
+			//TODO: не правильное архитектурное решение:
+			//      - кэширование запросов к БД для справочников реализовать в слое BLL 
+			//      - если в этом есть реальная необходимость, иначе оптимизация на спичках, и увеличение сложности
+			//      - как вариант, реализовать решение, связанное с кэшированием, в стиле AOP, сконфигурировав 
+			//        перехват вызовов методов в IoC 
+			
+			MemoryCache cache = MemoryCache.Default;
             //если есть в кэше - берём из него, в противном случае запрашиваем из IFarmService и помещаем в кэш
             var rc = cache.Get("regions") as IEnumerable<NamedItemViewModel>;
             var fc = cache.Get("farmers") as IEnumerable<NamedItemViewModel>;
@@ -88,7 +99,9 @@ namespace FarmApp.Controllers
             var rc = (cache.Get("regions") as IEnumerable<NamedItemViewModel>) ?? farmService.GetRegions().AsQueryable().ProjectTo<NamedItemViewModel>(mapper.ConfigurationProvider);
             var fc = (cache.Get("farmers") as IEnumerable<NamedItemViewModel>) ?? farmService.GetFarmers().AsQueryable().ProjectTo<NamedItemViewModel>(mapper.ConfigurationProvider);
             var ac = cache.Get("agricultures") as IEnumerable<NamedItemViewModel> ?? farmService.GetAgricultures().AsQueryable().ProjectTo<NamedItemViewModel>(mapper.ConfigurationProvider);
-            ViewBag.Regions = rc;
+
+			//TODO: использовать полноценный тип для View
+			ViewBag.Regions = rc;
             ViewBag.Farmers = fc;
             ViewBag.Agricultures = ac;
 
@@ -130,14 +143,16 @@ namespace FarmApp.Controllers
         {
             var farm = farmService.GetFarm(Id);
 
-            var farmModel = mapper.Map<FarmViewModel>(farm);
+			//TODO: реализовать явный маппинг как метод ViewModel, пусть он внутри 
+			//      себя использует для простых случаев, mapper.Map
+			var farmModel = mapper.Map<FarmViewModel>(farm);
 
             return View(farmModel);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int Id, FormCollection formCollection)
+        public ActionResult Delete(int Id, FormCollection formCollection /*TODO: лишний параметр*/)
         {
             farmService.DeleteFarm(Id);
 
