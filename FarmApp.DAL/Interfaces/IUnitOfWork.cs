@@ -6,10 +6,13 @@ using System.Threading.Tasks;
 
 namespace FarmApp.DAL.Interfaces
 {
+    //TODO: конкретно здесь IUnitOfWork паттерн ради паттерна, 
+    //лишняя оболочка над EF.Context, который и так UoW
+
     /// <summary>
     /// Интерфейс паттерна Unit of work
     /// </summary>
-	public interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
 	{
 		IRepository<Agriculture> Agricultures { get; }
 

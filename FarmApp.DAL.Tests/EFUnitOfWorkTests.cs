@@ -6,7 +6,9 @@ using System.Linq;
 
 namespace FarmApp.DAL.Tests
 {
-	[TestFixture]
+    //TODO: использовать отдельную БД, которая каждый раз создается заново для группы тестов
+    //TODO: это не тесты EFUnitOfWork, это интеграционные тесты, переименовать
+    [TestFixture]
 	public class EFUnitOfWorkTests
 	{
 		[SetUp]

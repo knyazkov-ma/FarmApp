@@ -8,7 +8,11 @@ using System.Threading.Tasks;
 
 namespace FarmApp.DAL.EF
 {
-	public class FarmContext : DbContext
+    //TODO: переместить в namespace FarmApp.DAL.Entities и папку Entities
+    //TODO: для Entities не использовать маппинг по конвенкции, для каждой Entity 
+    //      маппинг задать в отдельном классе/файле, максимально настроить маппинг для
+    //      генерации адекватной схемы БД: типы полей, ограничения, индексы, FK и т.п.
+    public class FarmContext : DbContext
 	{
 		public DbSet<Agriculture> Agricultures { get; set; }
 

@@ -20,7 +20,7 @@ namespace FarmApp.BLL.Services
 
 		private IMapper mapper;
 
-        public FarmService(IUnitOfWork uow, IMapper map)
+        public FarmService(IUnitOfWork uow /*TODO: лишнее, сразу инжектить EF.Context*/, IMapper map)
         {
 			database = uow ?? throw new ArgumentNullException("uow");			
 			mapper = map ?? throw new ArgumentNullException("map");
@@ -28,9 +28,14 @@ namespace FarmApp.BLL.Services
 
         public void AddFarmCrop(FarmCropDto farmCrop)
         {
+            //TODO: ArgumentNullException
             if (farmCrop == null)
                 throw new ValidationException($"Параметр farmCorp равен null", "");
 
+            //TODO: здесь и далее - все ошибки пользовательского ввода собрать в одну структуру,
+            //      которую можно будет удобно использовать в контроллерах, и бросить один ValidationException
+            //TODO: здесь и далее - строки перенести в ресурсы
+            //TODO: здесь и далее - проверка должна быть на допустимое значение
             if (farmCrop.AgricultureId < 1)
                 throw new ValidationException($"Неправильное значение: {farmCrop.AgricultureId }", "AgricultureId");
 
@@ -62,16 +67,20 @@ namespace FarmApp.BLL.Services
             }
             catch(Exception ex)
             {
+                //TODO: здесь и далее - бессмысленный try-catch, убрать
                 throw new Exception("Ошибка сохранения информации об урожае на ферме", ex);
             }
 
         }
 
-        public void DeleteFarm(int Id)
+        public void DeleteFarm(int Id /*TODO: здесь и далее - lowerCase*/)
         {
-            
+            //TODO: десь и далее SingleOrDefault более подходит по семантике
             var farmToRemove = database.Farms.Get(f => f.Id == Id).FirstOrDefault();
             if (farmToRemove == null)
+                //TODO: return
+                //TODO: или - нельзя базовый Exception, должен быть кастомный Exception, который
+                //      поймается в контроллере
                 throw new Exception($"Ферма с Id {Id} не найдена");
             try
             {

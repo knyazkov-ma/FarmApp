@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//TODO: здесь и далее - перемеименовать в FarmApp.DAL.Entities
 namespace FarmApp.DAL
 {
     /// <summary>

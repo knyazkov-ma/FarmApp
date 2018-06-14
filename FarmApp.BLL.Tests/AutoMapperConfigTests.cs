@@ -27,6 +27,7 @@ namespace FarmApp.BLL.Tests
             var from = new FarmCropDto() { AgricultureId = 1, Area = 2, FarmerId = 3, Gather = 4, Name = "abc", RegionId = 5 };
             var to = mapper.Map<FarmCropDto, Farm>(from);
 
+            //TODO: здесь и далее сделать атомарно на каждое свойство, добавить сообщение, когда тест не проходит
             Assert.IsTrue(to.Name == "abc" && to.Area == 2 && to.FarmerId == 3 && to.RegionId == 5);
         }
 

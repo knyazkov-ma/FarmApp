@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace FarmApp.DAL.Interfaces
 {
+    //TODO: конкретно здесь IRepository паттерн ради паттерна, лишняя оболочка над EF.Context
+
     /// <summary>
     /// Обобщённый репозиторий - набор операций над сущностью
     /// </summary>

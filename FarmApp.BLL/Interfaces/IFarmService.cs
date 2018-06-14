@@ -5,13 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//TODO: переименовать в FarmApp.BLL.Services.Interfaces и переместить в папку Services
 namespace FarmApp.BLL.Interfaces
 {
     /// <summary>
     /// Предоставляет набор операций бизнес-логики
     /// </summary>
-    public interface IFarmService : IDisposable
+    public interface IFarmService : IDisposable /*TODO: нет смысла, убрать*/
     {
+        //TODO: по условию ТЗ надо максимально использовать асинхронность, 
+        //тут же все методы синхронные
+        
         /// <summary>
         /// Получить информацию по фермам
         /// </summary>
